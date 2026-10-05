@@ -13,4 +13,4 @@
 | 01 | NB2 1K, pierwsza próba | za duże, ciemne, „A” z poprzeczką |
 | 02 | NB2 2K, płytki wklęsły | podwójny kontur, wygląda na wypukłe |
 | 03 | NB2 vs Pro + zbliżenie wzoru | **NB2 najlepszy dotąd**; Pro odpada |
-| 04 | harmonizacja składanki + poprawka v3 | w toku |
+| 04 | harmonizacja składanki + poprawka v3 | AI wraca do czystego fontu; składanka lokalna bardziej realistyczna |

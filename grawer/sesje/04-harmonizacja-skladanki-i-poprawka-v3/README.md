@@ -13,4 +13,7 @@ Model: vertexai/nano-banana-2, 2K, 4:5, thinking HIGH, temperature 1.0 (domyśln
 - Pliki: `2-poprawka-v3-seed11.png`, `2-poprawka-v3-seed22.png`
 
 ## Werdykt
-_(uzupełniane po generacji)_
+- **1-harmonizacja seed11 / seed22:** napis ładnie siedzi w istniejącym owalu i pasuje do ornamentu, ale model z powrotem „wyczyścił” litery na idealny font (pełne, równe linie). Niedoskonałości ze składanki zniknęły; „A” w VINTAGE z poprzeczką. Seed22 dodał rysy na tacy.
+- **2-poprawka seed11:** model przerysował całe zdjęcie (inny kadr, inne ornamenty) — odrzucony.
+- **2-poprawka seed22:** litery nadal obrysowane podwójnym konturem z kropkowanym wypełnieniem — gorzej niż v3.
+- Wniosek: każda pełna edycja AI „poprawia” litery do czystego fontu. Najbardziej realistyczny grawer daje lokalna składanka; AI tylko w masce (inpaint) albo wcale.

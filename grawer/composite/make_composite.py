@@ -36,34 +36,39 @@ CENTER        = (1106, 1300)    # where the centre of the text block lands
 APPARENT_TILT = -7.0            # deg, image-space slope of the tray's long axis (neg = right side up)
 FORESHORTEN   = 0.84            # vertical squash from camera tilt (1 = straight top-down)
 KEYSTONE      = 0.985           # far(top) edge width / near(bottom) edge width over the text height
-TEXT_WIDTH    = {'third': 490, 'cartouche': 300}[VARIANT]   # px width of "A Certain Era" before squash
+TEXT_WIDTH    = {'third': 420, 'cartouche': 290}[VARIANT]   # px width of "A Certain Era" before squash
 VINTAGE_SCALE = 1.12            # VINTAGE line slightly enlarged vs logo (engravers keep small caps legible)
-LINE_GAP_ADD  = 0.10            # extra gap between the two lines (fraction of cap height)
+LINE_GAP_ADD  = 0.30            # extra gap between the two lines (fraction of cap height)
 
 # Engraved line look (final image pixels)
 SS            = 4               # supersampling factor for drawing
-LINE_W        = 1.9             # core width of a burin cut
-LINE_GAIN     = 0.20            # how far toward white the cut lifts the metal (existing lines ~0.15-0.25)
+LINE_W        = 1.7             # core width of a burin cut
+LINE_GAIN     = 0.30            # how far toward white the cut lifts the metal (existing lines ~0.15-0.25)
 DARK_EDGE     = 7.0             # grey levels of faint shadow on one side of the cut (0 = off)
 DARK_DIR      = (0.0, 1.0)      # unit vector (x,y) image space: shadow side (light from top)
-WOBBLE_AMP    = 0.55            # px, slow hand wobble
-WOBBLE_SCALE  = 9.0             # px, wavelength-ish of wobble
-TREMOR_AMP    = 0.22            # px, fine tremor
+WOBBLE_AMP    = 0.40            # px, slow hand wobble
+WOBBLE_SCALE  = 16.0            # px, wavelength-ish of wobble
+TREMOR_AMP    = 0.07            # px, fine tremor
 BASELINE_AMP  = 1.6             # px, slow baseline drift across the line of text
 LETTER_JIT    = (0.7, 0.6, 1.3) # per-letter sigma: dx px, dy px, rotation deg
-OPACITY_RANGE = (0.35, 1.0)     # along-stroke strength variation (wear / pressure)
-GAP_FRACTION  = 0.07            # fraction of stroke length that skips/worn away
+OPACITY_RANGE = (0.50, 1.0)     # along-stroke strength variation (wear / pressure)
+GAP_FRACTION  = 0.04            # fraction of stroke length that skips/worn away
 N_RECUTS      = 4               # number of doubled (re-cut) segments
 N_SLIPS       = 3               # tiny burin overshoot tails at stroke ends
-SPARKLE       = 0.45            # multiplicative frosted glint noise amplitude
-FINAL_BLUR    = 0.55            # gaussian sigma to match photo softness
+SPARKLE       = 0.28            # multiplicative frosted glint noise amplitude
+FINAL_BLUR    = 0.40            # gaussian sigma to match photo softness
 JPEG_ROUNDTRIP= 92              # re-encode composite through JPEG at this quality (0 = off)
 
 # Cartouche clearing (fade existing floral lines under/around the text)
+# For 'third' the text is larger than the existing dotted cartouche, so we engrave a NEW
+# double-line oval frame (same burin look) around the text and remove the old floral lines
+# inside it -- exactly what an engraver adding a presentation inscription would do.
 CLEAR         = {'third': True, 'cartouche': False}[VARIANT]
-CLEAR_PAD     = (40, 22)        # px padding of the cleared ellipse around the text block
-CLEAR_FEATHER = 18              # px soft edge of the cleared zone
-CLEAR_AMOUNT  = 0.85            # 1 = lines fully removed in the centre of the zone
+FRAME_AXES    = (272, 142)      # px semi-axes of the new oval frame (tray plane, pre-squash);
+                                # chosen to enclose the text AND the old dotted cartouche completely
+BORDER_GAP    = 5.0             # px between the two frame lines (0 = single line)
+CLEAR_FEATHER = 1.5             # px soft edge of the cleared zone (just inside the frame)
+CLEAR_AMOUNT  = 1.0             # 1 = old lines fully removed inside the frame
 
 rng = np.random.default_rng(SEED)
 
@@ -180,13 +185,25 @@ for k, (gx0, gx1, gl) in groups.items():
 mask = (work > 0.5).astype(np.uint8)
 ys, xs = np.where(mask)
 pad = int(12 * SS)
-y0, y1, x0, x1 = max(0, ys.min() - pad), ys.max() + pad, max(0, xs.min() - pad), xs.max() + pad
-mask = mask[y0:y1, x0:x1]
+padx = pady = pad
+if CLEAR:
+    padx = max(pad, int((FRAME_AXES[0] + 8) * SS - (xs.max() - xs.min()) / 2))
+    pady = max(pad, int((FRAME_AXES[1] + 8) * SS - (ys.max() - ys.min()) / 2))
+mask = np.pad(mask, ((pady, pady), (padx, padx)))
+mask = mask[ys.min(): ys.max() + 2 * pady, xs.min(): xs.max() + 2 * padx]
 mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
 
 # ----------------------------------------------------------------- 2. centreline (single burin cut)
 skel = zhang_suen(mask)
 Hs, Ws = skel.shape
+if CLEAR:
+    ax, ay = int(FRAME_AXES[0] * SS), int(FRAME_AXES[1] * SS)
+    cv2.ellipse(skel, (Ws // 2, Hs // 2), (ax, ay), 0, 0, 360, 1, 1)
+    if BORDER_GAP > 0:
+        g_ = int(BORDER_GAP * SS)
+        cv2.ellipse(skel, (Ws // 2, Hs // 2), (ax - g_, ay - g_), 0, 0, 360, 1, 1)
+    zone_plane = np.zeros((Hs, Ws), np.float32)
+    cv2.ellipse(zone_plane, (Ws // 2, Hs // 2), (ax + int(1.5 * SS), ay + int(1.5 * SS)), 0, 0, 360, 1, -1)
 
 # endpoints (for slips) & skeleton pixel list
 nb = cv2.filter2D(skel.astype(np.float32), -1, np.ones((3, 3), np.float32)) - skel
@@ -202,7 +219,7 @@ if len(endpoints):
         v = np.array([ey, ex]) - nbh.mean(0)
         if np.linalg.norm(v) < 1e-3: continue
         v /= np.linalg.norm(v)
-        L = rng.uniform(2.5, 5.5) * SS
+        L = rng.uniform(1.5, 3.5) * SS
         bend = rng.normal(0, 0.15)
         p1 = (int(ex + (v[1] + bend * v[0]) * L), int(ey + (v[0] - bend * v[1]) * L))
         cv2.line(slips, (int(ex), int(ey)), p1, 1, 1)
@@ -280,20 +297,27 @@ block = cv2.warpPerspective(np.ones((hf, wf), np.float32), Hm, (Wb, Hb))
 out = base.copy()
 ys, xs = np.where(layer > 0.05)
 ecx, ecy = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
-eax, eay = (xs.max() - xs.min()) / 2 + CLEAR_PAD[0], (ys.max() - ys.min()) / 2 + CLEAR_PAD[1]
+eax, eay = (xs.max() - xs.min()) / 2, (ys.max() - ys.min()) / 2
 if CLEAR:
-    zone = np.zeros((Hb, Wb), np.float32)
-    cv2.ellipse(zone, (int(ecx), int(ecy)), (int(eax), int(eay)), APPARENT_TILT, 0, 360, 1, -1)
+    zsmall = cv2.resize(zone_plane, (wf, hf), interpolation=cv2.INTER_AREA)
+    zone = cv2.warpPerspective(zsmall, Hm, (Wb, Hb))
     zone = cv2.GaussianBlur(zone, (0, 0), CLEAR_FEATHER) * CLEAR_AMOUNT
+    # remove old engraved lines: detect them (bright thin = top-hat), inpaint, then
+    # rebuild a smooth metal base + re-synthesised grain so the patch is not plasticky
     g = cv2.cvtColor(base.astype(np.uint8), cv2.COLOR_BGR2GRAY)
-    th_ = cv2.morphologyEx(g, cv2.MORPH_TOPHAT, np.ones((9, 9), np.uint8))
-    linemask = ((th_ > 7) & (zone > 0.02)).astype(np.uint8) * 255
-    linemask = cv2.dilate(linemask, np.ones((3, 3), np.uint8))
-    clean = cv2.inpaint(base.astype(np.uint8), linemask, 4, cv2.INPAINT_TELEA).astype(np.float32)
-    # inpaint loses grain: put back fine noise from the original high-pass
-    hp = base - cv2.GaussianBlur(base, (0, 0), 1.2)
-    hp_clean = np.where(linemask[..., None] > 0, np.roll(hp, 7, axis=1), hp)
-    clean = cv2.GaussianBlur(clean, (0, 0), 1.2) + hp_clean
+    th_ = cv2.morphologyEx(g, cv2.MORPH_TOPHAT, np.ones((11, 11), np.uint8))
+    linemask = ((th_ > 4) & (zone > 0.01)).astype(np.uint8) * 255
+    linemask = cv2.dilate(linemask, np.ones((5, 5), np.uint8))
+    clean = cv2.inpaint(base.astype(np.uint8), linemask, 6, cv2.INPAINT_TELEA).astype(np.float32)
+    clean = cv2.medianBlur(clean.astype(np.uint8), 9).astype(np.float32)
+    clean = cv2.GaussianBlur(clean, (0, 0), 3.0)
+    # grain statistics from a line-free part of the original metal
+    hp = base - cv2.GaussianBlur(base, (0, 0), 1.0)
+    free = (linemask == 0) & (zone > 0.5)
+    gstd = hp[free].std(0) if free.sum() > 100 else np.float32([2, 2, 2])
+    n_ = rng.standard_normal((Hb, Wb)).astype(np.float32)
+    n_ = cv2.GaussianBlur(n_, (0, 0), 0.7); n_ /= n_.std()
+    clean = clean + n_[..., None] * gstd[None, None, :] * 0.9
     out = base * (1 - zone[..., None]) + clean * zone[..., None]
 
 # ----------------------------------------------------------------- 6. blend the cut
@@ -325,7 +349,10 @@ crop = out[cy0:cy0 + 440, cx0:cx0 + 760]
 cv2.imwrite(os.path.join(OUT_DIR, f'composite-{v}-zoom.png'), cv2.resize(crop, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC))
 # inpaint mask: text block + generous margin, soft edge (white = editable)
 im = np.zeros((Hb, Wb), np.float32)
-cv2.ellipse(im, (int(ecx), int(ecy)), (int(eax + 30), int(eay + 30)), APPARENT_TILT, 0, 360, 1, -1)
+cv2.ellipse(im, (int(ecx), int(ecy)), (int(eax + 28), int(eay + 24)), APPARENT_TILT, 0, 360, 1, -1)
 im = cv2.GaussianBlur(im, (0, 0), 6)
 cv2.imwrite(os.path.join(OUT_DIR, f'mask-inpaint-{v}.png'), (im * 255).astype(np.uint8))
 print('done', v, 'text bbox', xs.min(), xs.max(), ys.min(), ys.max())
+# tight mask: only the cuts + 6 px (re-texture lines without letting the model redraw glyphs)
+tight = cv2.dilate((layer * LINE_GAIN * 255 * 2 > 10).astype(np.uint8) * 255, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (13, 13)))
+cv2.imwrite(os.path.join(OUT_DIR, f'mask-inpaint-tight-{v}.png'), cv2.GaussianBlur(tight, (0, 0), 2))

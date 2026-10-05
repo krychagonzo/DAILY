@@ -14,4 +14,5 @@
 | 02 | NB2 2K, płytki wklęsły | podwójny kontur, wygląda na wypukłe |
 | 03 | NB2 vs Pro + zbliżenie wzoru | **NB2 najlepszy dotąd**; Pro odpada |
 | 04 | harmonizacja składanki + poprawka v3 | AI wraca do czystego fontu; składanka lokalna bardziej realistyczna |
-| 05 | NB2 prompt B na oryginale + wklejka; Flux Fill | **`sesje/05-…/A-nb2-seed44-FINAL.png` — najlepszy dotąd, oryginalny dywan i tacka** |
+| 05 | NB2 prompt B na oryginale + wklejka; Flux Fill | jasny włosowy grawer, oryginalny dywan i tacka |
+| 06 | styl z referencji: ciemna patyna w rowkach | **`sesje/06-…/A-patyna-seed54-FINAL.png` — najlepszy dotąd** |

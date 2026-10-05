@@ -1,0 +1,13 @@
+Using Image 1, engrave the inscription "A Certain Era" with "VINTAGE" below it into the centre of the silver tray, in the engraving style shown in Image 2. Change nothing else in the photo.
+
+Image 1 is the photo to edit: an old, worn, silver-plated oval tray with a gadrooned rim and a faint floral scroll engraving, lying on a grey-brown rug, shot from above at an angle with a phone in soft daylight. Image 2 is a close-up of a real vintage engraved inscription; use it only as the reference for how the engraving looks: technique, depth, tarnish, wear and imperfection, not for its typeface. Image 3 is the logo; use it only for the exact letter shapes and spacing: "A Certain Era" in a thin geometric sans-serif with a single-storey a, and "VINTAGE" in small, widely spaced capitals whose A is an open Λ with no crossbar.
+
+How the engraving looks, as in Image 2:
+- Each letter stroke is a real cut channel the full width of the stroke, sunk into the metal. Decades of tarnish have collected in the channels, so the letters read as dark graphite-grey, darker than the polished silver around them.
+- Inside each channel the grey is mottled and uneven, with lighter rubbed spots where polishing has worn the tarnish away, and a slightly darker shade along the inner wall that faces away from the light, so the letters look sunken into the tray.
+- The edges are soft and a little ragged, as a hand graver leaves them. Some strokes are cut a touch deeper than others, a few are partly worn or under-cut, with small specks of tarnish and the tray's fine surface scratches crossing the letters.
+- It is clearly an old, used, vintage object: slightly dirty, imperfect, believable.
+
+Perspective and placement: the lettering lies flat on the tray's inner oval and follows exactly the same perspective as the tray surface in Image 1, foreshortened like the floral engraving around it, centred on the tray's long axis. "A Certain Era" spans about 40% of the inner oval's width, "VINTAGE" about half of that. The faint floral scrolls remain visible around and slightly through the letters.
+
+Keep exactly as in Image 1: tray shape, rim, shell ornaments, every reflection, spot and scratch, the floral engraving, the rug, crop, colours, white balance, softness and grain. The result is an unretouched phone snapshot of a genuinely old engraved tray.

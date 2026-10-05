@@ -14,6 +14,7 @@ pixels.
 | `engraving-lines-<v>.png` | flat (un-warped) single-line engraving, grey intensity |
 | `engraving-layer-<v>.png` | RGBA layer in photo coordinates (white, alpha = cut strength) |
 | `mask-inpaint-<v>.png` | inpaint mask (white = may change), see below |
+| mode `patina` | `python3 make_composite.py patina [seed=4] [depth=0.46] [name]`: full-width letters as a dark, tarnished, worn channel (style of `referencja-styl-graweru*`). Output goes to `sesje/06-styl-z-referencji-ciemna-patyna/`. Parameters are `PAT_*` at the top of the script; see that folder's README. |
 
 Requirements: `pip install numpy opencv-python-headless`. Each run takes about 5 s. The output is deterministic for a given seed.
 

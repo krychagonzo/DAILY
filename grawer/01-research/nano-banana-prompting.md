@@ -122,7 +122,7 @@ Rules:
 
 ## 4. PROMPT A: refinement edit on v3-nb2
 
-Inputs: Image 1 = `output/tacka-grawer-v3-nb2.png`, Image 2 = `input/wzor-grawerunku-zblizenie.png`, Image 3 = `input/logo-a-certain-era.png` (or a single-line/skeleton version of it).
+Inputs: Image 1 = `sesje/03-nb2-vs-pro-wzorzec-grawerunku/wynik-nb2-NAJLEPSZY.png`, Image 2 = `00-materialy/input/wzor-grawerunku-zblizenie.png`, Image 3 = `00-materialy/input/logo-a-certain-era.png` (or a single-line/skeleton version of it).
 
 ```
 Using Image 1, redraw only the engraved inscription "A Certain Era" / "VINTAGE" in the centre of the tray. Everything else in Image 1 stays exactly as it is.
@@ -143,7 +143,7 @@ Keep exactly the same as Image 1: the tray's shape, rim and shell ornaments, all
 
 ## 5. PROMPT B: full regeneration from the original photo
 
-Inputs: Image 1 = `input/tacka.jpg`, Image 2 = `input/wzor-grawerunku-zblizenie.png`, Image 3 = `input/logo-a-certain-era.png` (or its single-line/skeleton version).
+Inputs: Image 1 = `00-materialy/input/tacka.jpg`, Image 2 = `00-materialy/input/wzor-grawerunku-zblizenie.png`, Image 3 = `00-materialy/input/logo-a-certain-era.png` (or its single-line/skeleton version).
 
 ```
 Using Image 1, add a small hand-engraved inscription to the centre of the silver tray, cut in exactly the same technique as the tray's existing floral engraving. Change nothing else in the photo.

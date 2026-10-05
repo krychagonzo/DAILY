@@ -22,8 +22,8 @@ import cv2
 
 # ----------------------------------------------------------------- parameters
 HERE      = os.path.dirname(os.path.abspath(__file__))
-BASE_IMG  = os.path.join(HERE, '..', 'input', 'tacka.jpg')
-LOGO_IMG  = os.path.join(HERE, '..', 'input', 'logo-a-certain-era.png')
+BASE_IMG  = os.path.join(HERE, '..', '00-materialy', 'input', 'tacka.jpg')
+LOGO_IMG  = os.path.join(HERE, '..', '00-materialy', 'input', 'logo-a-certain-era.png')
 OUT_DIR   = HERE
 
 VARIANT   = sys.argv[1] if len(sys.argv) > 1 else 'cartouche'

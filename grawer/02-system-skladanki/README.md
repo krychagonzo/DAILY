@@ -41,7 +41,7 @@ Requirements: `pip install numpy opencv-python-headless`. Each run takes about 5
    top-hat and removed with an inpaint plus median/Gaussian smoothing. Grain is re-synthesized from
    the noise statistics of the original metal.
 8. **Softness.** A Gaussian blur of 0.4 px is applied, then the edited area only goes through one
-   JPEG q92 round-trip. Every pixel outside the edit is bit-identical to `input/tacka.jpg`.
+   JPEG q92 round-trip. Every pixel outside the edit is bit-identical to `00-materialy/input/tacka.jpg`.
 
 ## Honest assessment
 
@@ -64,7 +64,7 @@ Requirements: `pip install numpy opencv-python-headless`. Each run takes about 5
 ## Recommended AI step 1: Nano Banana 2 harmonize pass (cheap, keeps shape)
 
 Inputs: **Image 1 = `composite-cartouche.png`** (or `composite-third.png`). Optionally,
-**Image 2 = `input/wzor-grawerunku-zblizenie.png`** as the line-finish reference. Do NOT pass the
+**Image 2 = `00-materialy/input/wzor-grawerunku-zblizenie.png`** as the line-finish reference. Do NOT pass the
 logo PNG: it pulls the model back to clean font outlines. Use low creativity if the API exposes it,
 same aspect ratio, 2K.
 

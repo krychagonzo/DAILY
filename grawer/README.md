@@ -15,4 +15,5 @@
 | 03 | NB2 vs Pro + zbliżenie wzoru | **NB2 najlepszy dotąd**; Pro odpada |
 | 04 | harmonizacja składanki + poprawka v3 | AI wraca do czystego fontu; składanka lokalna bardziej realistyczna |
 | 05 | NB2 prompt B na oryginale + wklejka; Flux Fill | jasny włosowy grawer, oryginalny dywan i tacka |
-| 06 | styl z referencji: ciemna patyna w rowkach | **`sesje/06-…/A-patyna-seed54-FINAL.png` — najlepszy dotąd** |
+| 06 | styl z referencji: ciemna patyna w rowkach | za sztuczne wg klienta |
+| 07 | czysta generacja, krótki prompt, referencja stylu | **najbardziej realistyczny grawer; ale krój szeryfowy z referencji zamiast logo** |

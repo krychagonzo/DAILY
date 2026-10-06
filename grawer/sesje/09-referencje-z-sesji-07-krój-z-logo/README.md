@@ -3,3 +3,7 @@
 - Image 1 = tacka.jpg, Image 2 = logo, Image 3 = sesje/07/nb2-seed71-zblizenie.png, Image 4 = sesje/07/pro-seed72-zblizenie.png (tylko wykończenie: brud, patyna, nieidealność)
 - Nano Banana Pro, 2K, seedy 91–94, zero obróbki
 - Prompt: `prompt.txt` (grawer „sprzed 100 lat”)
+
+## Werdykt
+- Wykończenie graweru wyszło dokładnie takie, jak chciał klient: brudne, nieidealne, „sprzed 100 lat”, płytkie, w perspektywie, ornament zachowany.
+- **Ale wszystkie 4 znowu mają krój szeryfowy** — referencje (szeryfowe litery z sesji 07) przeważyły nad logo i nad zakazem w promptcie. Wniosek: dopóki referencje stylu pokazują litery szeryfowe, model kopiuje krój.

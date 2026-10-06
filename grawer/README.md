@@ -28,4 +28,6 @@
 | 16 | baza: referencja klienta (kontury) | litery wypukłe / inne zdjęcie — odrzucone |
 | 17 | baza: napis wypełniony przez klienta | dobre, ale „A” w VINTAGE z poprzeczką, litery za ciemne |
 | 18 | wymuszenie „Λ” + światło jak ornament | logotyp 100%, „Λ” poprawne, ale za jasne (folia) |
-| 19 | finalne (wnioski z analizy 18) | **`sesje/19-finalne/pro-seed194.png` — FINAŁ** (alternatywa: pro-seed193) |
+| 19 | finalne (wnioski z analizy 18) | `sesje/19-finalne/pro-seed194.png` (alternatywa: pro-seed193) |
+| 20 | postarzenie na postprodukcji klienta | za dużo brudu, „Λ” zgubione we wszystkich |
+| 21 | ostatnia partia: niedoskonałość bez brudu | **`sesje/21-…/pro-seed211.png` — jedyny z poprawnym „Λ”, czysty metal** |

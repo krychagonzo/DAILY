@@ -16,4 +16,5 @@
 | 04 | harmonizacja składanki + poprawka v3 | AI wraca do czystego fontu; składanka lokalna bardziej realistyczna |
 | 05 | NB2 prompt B na oryginale + wklejka; Flux Fill | jasny włosowy grawer, oryginalny dywan i tacka |
 | 06 | styl z referencji: ciemna patyna w rowkach | za sztuczne wg klienta |
-| 07 | czysta generacja, krótki prompt, referencja stylu | **najbardziej realistyczny grawer; ale krój szeryfowy z referencji zamiast logo** |
+| 07 | czysta generacja, krótki prompt, referencja stylu | realistyczny grawer, ale krój szeryfowy z referencji |
+| 08 | czysta generacja, krój z logo | **`sesje/08-…/pro-seed81.png` — najlepszy dotąd** (A w VINTAGE z poprzeczką) |

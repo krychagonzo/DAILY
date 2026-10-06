@@ -30,4 +30,5 @@
 | 18 | wymuszenie „Λ” + światło jak ornament | logotyp 100%, „Λ” poprawne, ale za jasne (folia) |
 | 19 | finalne (wnioski z analizy 18) | `sesje/19-finalne/pro-seed194.png` (alternatywa: pro-seed193) |
 | 20 | postarzenie na postprodukcji klienta | za dużo brudu, „Λ” zgubione we wszystkich |
-| 21 | ostatnia partia: niedoskonałość bez brudu | **`sesje/21-…/pro-seed211.png` — jedyny z poprawnym „Λ”, czysty metal** |
+| 21 | ostatnia partia: niedoskonałość bez brudu | `sesje/21-…/pro-seed211.png` — jedyny z poprawnym „Λ”, czysty metal |
+| 22 | poprawny kierunek cienia (wklęsłe) + ciemny środek | **cień poprawny we wszystkich; normalny-222 / ciemny-224; „Λ” do poprawy w postprodukcji** |

@@ -22,4 +22,5 @@
 | 10 | postarzenie wyniku 08 (krój z logo) + referencje 07/09 | dobre, ale za mocno postarzone |
 | 11 | przygaszenie + spójność ze stanem tacy | dobre, ale grawer za głęboki, logotyp niezgodny |
 | 12 | płytki grawer + wierny logotyp | płytki, ale kreska grubsza niż w logo |
-| 13 | technika i światło jak istniejący ornament | **`sesje/13-…/pro-seed133.png` — najlepszy dotąd (ton/światło zgodne z ornamentem)** |
+| 13 | technika i światło jak istniejący ornament | ton/światło zgodne, ale grube litery, sztuczna faktura |
+| 14 | gładkie wypolerowane wnętrze + forma 1:1 z logo | **`sesje/14-…/B-pro-seed144.png` i `B-pro-seed143.png` — logotyp wierny, „Λ” poprawne** |

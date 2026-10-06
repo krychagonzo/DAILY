@@ -19,4 +19,5 @@
 | 07 | czysta generacja, krótki prompt, referencja stylu | realistyczny grawer, ale krój szeryfowy z referencji |
 | 08 | czysta generacja, krój z logo | **`sesje/08-…/pro-seed81.png` — najlepszy z krojem z logo** (za czysty) |
 | 09 | referencje = wyniki sesji 07 | świetne postarzenie, ale znów krój szeryfowy |
-| 10 | postarzenie wyniku 08 (krój z logo) + referencje 07/09 | **`sesje/10-…/pro-seed104.png` — najlepszy dotąd** |
+| 10 | postarzenie wyniku 08 (krój z logo) + referencje 07/09 | dobre, ale za mocno postarzone |
+| 11 | przygaszenie + spójność ze stanem tacy | **`sesje/11-…/pro-seed112.png` — najlepszy dotąd** |

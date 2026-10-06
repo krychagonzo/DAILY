@@ -27,4 +27,5 @@
 | 15 | stonowany połysk (edycja 143/144) | stonowane, ale „Λ” zgubione |
 | 16 | baza: referencja klienta (kontury) | litery wypukłe / inne zdjęcie — odrzucone |
 | 17 | baza: napis wypełniony przez klienta | dobre, ale „A” w VINTAGE z poprzeczką, litery za ciemne |
-| 18 | wymuszenie „Λ” + światło jak ornament | **`sesje/18-…/pro-seed182.png` (i 183) — logotyp 100%, „Λ” poprawne, jasny grawer** |
+| 18 | wymuszenie „Λ” + światło jak ornament | logotyp 100%, „Λ” poprawne, ale za jasne (folia) |
+| 19 | finalne (wnioski z analizy 18) | **`sesje/19-finalne/pro-seed194.png` — FINAŁ** (alternatywa: pro-seed193) |

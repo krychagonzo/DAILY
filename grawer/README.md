@@ -23,4 +23,7 @@
 | 11 | przygaszenie + spójność ze stanem tacy | dobre, ale grawer za głęboki, logotyp niezgodny |
 | 12 | płytki grawer + wierny logotyp | płytki, ale kreska grubsza niż w logo |
 | 13 | technika i światło jak istniejący ornament | ton/światło zgodne, ale grube litery, sztuczna faktura |
-| 14 | gładkie wypolerowane wnętrze + forma 1:1 z logo | **`sesje/14-…/B-pro-seed144.png` i `B-pro-seed143.png` — logotyp wierny, „Λ” poprawne** |
+| 14 | gładkie wypolerowane wnętrze + forma 1:1 z logo | logotyp wierny, „Λ” poprawne, ale za bardzo się świeci |
+| 15 | stonowany połysk (edycja 143/144) | stonowane, ale „Λ” zgubione |
+| 16 | baza: referencja klienta (kontury) | litery wypukłe / inne zdjęcie — odrzucone |
+| 17 | baza: napis wypełniony przez klienta | **`sesje/17-…/pro-seed171.png` — najlepszy dotąd; tylko „A” w VINTAGE z poprzeczką** |

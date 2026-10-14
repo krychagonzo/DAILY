@@ -5,15 +5,21 @@
 
 ## Logo „A CERTAIN ERA / VINTAGE” (wersja bold) – `logo-a-certain-era-vintage.svg`
 
-Źródło: `logo2-zrodlo.jpg` (słaba jakość). Wektory **nie są obrysem** zdjęcia: każda litera
-to oryginalny kontur z fontu Montserrat (darmowy odpowiednik Gothama), dopasowany do
-pozycji i wielkości liter z oryginału. Dzięki temu krawędzie są idealnie proste i gładkie.
+Źródło: `logo2-zrodlo.jpg` (słaba jakość). Wektory **nie są obrysem** zdjęcia, tylko oryginalnymi
+konturami fontu Montserrat (darmowy odpowiednik Gothama), które zostały **przerysowane tak, by
+pokrywały się z oryginałem**. Krawędzie są proste i gładkie, a kształty zgodne z logo.
 
-- „A CERTAIN ERA”: Montserrat, grubość 720 (≈ Bold)
-- „VINTAGE”: Montserrat, grubość 450 (≈ Book/Regular), szeroki rozstrzał liter jak w oryginale
-- Jedna ścieżka, kolor #000, same krzywe (bez fontów)
+Wersja 2 (dopasowana do oryginału):
+- grubość „A CERTAIN ERA”: 760, „VINTAGE”: 450
+- każda litera ma pozycję, wysokość i szerokość dokładnie z oryginału
+- poprawki kształtów, dobrane automatycznie przez porównanie piksel po pikselu:
+  - **E**: grubsze belki górna i dolna, poprzeczka wyżej, w VINTAGE tak samo
+  - **R**: krótszy i wyższy brzuszek, węższy łuk, płynnie (bez załamań)
+  - **A**: poprzeczka w miejscu z oryginału (bold: niżej, VINTAGE: wyżej)
+  - **G**: długa, prosta pozioma poprzeczka jak w Gothamie, na właściwej wysokości
+- zgodność z oryginałem: **96,5 %** pikseli (różnice to rozmycie JPEG na krawędziach, poniżej 1 px)
+- jedna ścieżka, kolor #000, bez nakładających się konturów, same krzywe
 - `porownanie-logo-vintage.png`: czarne = zgodne, czerwone = tylko oryginał, niebieskie = tylko SVG
-- Skrypt: `python3 odbuduj_logo_vintage.py Montserrat.ttf logo2-zrodlo.jpg wynik.svg`
 
-Oryginał najpewniej jest złożony Gothamem (Bold + Book). Poprzeczki w E/R/A są w nim
-odrobinę niżej, a G ma inną końcówkę. Jeśli masz licencję na Gotham, można podmienić font w skrypcie.
+Odtworzenie: `skrypt-vintage/` (`opt.py` dobiera poprawki → `params.json`, `final.py` zapisuje SVG):
+`python3 skrypt-vintage/final.py Montserrat[wght].ttf logo2-zrodlo.jpg skrypt-vintage/params.json wynik.svg`

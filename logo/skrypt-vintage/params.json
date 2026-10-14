@@ -1,0 +1,18 @@
+{
+ "bAbar_lo": -0.0225,
+ "bAbar_hi": 0.0025,
+ "bEbotin": 0.015,
+ "bEtopin": -0.005,
+ "bEmid": 0.005,
+ "Rbowl": 0.0625,
+ "Rcnt": 0.024999999999999998,
+ "Rright": -0.02,
+ "Rleg": -0.01,
+ "bEmidlen": 0.01,
+ "lAbar_hi": 0.025,
+ "lAbar_lo": 0.01,
+ "Gbar": -0.22000000000000003,
+ "Gbary": 0.02,
+ "lEbotin": 0.02,
+ "lEmid": 0.02
+}

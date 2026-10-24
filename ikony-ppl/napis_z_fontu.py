@@ -10,6 +10,7 @@ g = sfd.load(fontp); d = json.load(open(fitp)); P, dx = d["P"], d["dx"]
 # prawe ramię przedłużone po prostej (nachylenie jak górna część) do linii descendera -429
 g[ord("y")]["c"] = [[("m", (1013, 1117)), ("l", (455, -429)), ("l", (287, -429)), ("l", (442, 0)),
                      ("l", (6, 1117)), ("l", (201, 1117)), ("l", (509, 238)), ("l", (818, 1117))]]
+sfd.smooth_joins(g)   # usuwa uskoki na styku łuk-prosta (np. bark "n")
 p = pathops.Path(); pen = p.getPen(); k = 0
 class T:
     def __init__(s, f): s.f = f

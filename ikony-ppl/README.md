@@ -27,7 +27,13 @@ Kolor #004B85 odczytano ze zdjęcia JPG, więc oficjalny kolor z księgi znaku m
 
 ## PPL Porty Lotnicze
 - znak: ten sam wygładzony `ppl-logo.svg`, przeskalowany i ustawiony dokładnie na kole z `porty-lotnicze-zrodlo.png`
-- napis: **złożony z konturów fontu Tahoma** (wersja otwarta z projektu Wine, licencja LGPL), a nie obrysowany.
-  Skala, pozycje słów, rozstrzał i drobne korekty liter dopasowane do źródła (`napis-tahoma-dopasowanie.json`).
-  W wersji Wine litera „y” ma zakrzywiony ogonek, więc poprawiono ją na prosty, jak w oryginalnej Tahomie.
-- skrypty: `napis_z_fontu.py` (napis) → `zloz_porty_lotnicze.py` (znak + napis, jedna ścieżka)
+- napis: krój **Tahoma**. Oryginalna Tahoma jest licencjonowana przez Microsoft, więc punktem wyjścia jest
+  otwarta Tahoma z projektu Wine (LGPL), która różni się od oryginału w szczegółach. Dlatego:
+  1. litery ustawione wg dopasowania do źródła (`napis-tahoma-dopasowanie.json`: skala, pozycje, rozstrzał)
+  2. poprawione usterki glifów Wine: prosty ogonek „y”, gładkie przejścia łuk–prosta (np. bark „n”)
+  3. każda litera dociągnięta do kształtu z oryginału (`dopasuj_glify.py`): niewielkie przekształcenie
+     afiniczne + bardzo gładkie pole przesunięć, liczone tak, by kontur leżał na krawędzi liter źródła;
+     potem pionowe/poziome odcinki wyrównane dokładnie do osi. Kontury pozostają krzywymi z fontu,
+     więc są gładkie, a kształtem odpowiadają oryginałowi (zgodność pikseli napisu ok. 94%)
+- `porownanie-porty-lotnicze.png`: u góry oryginał, na dole SVG
+- skrypty: `dopasuj_glify.py` (napis) → `zloz_porty_lotnicze.py` (znak + napis, jedna ścieżka)

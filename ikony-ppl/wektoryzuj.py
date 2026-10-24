@@ -19,7 +19,8 @@ FIT_ERR = float(sys.argv[7]) if len(sys.argv) > 7 else 0.6    # tolerancja dopas
 def cross2(a, b): return a[0]*b[1] - a[1]*b[0]
 
 # ---------- 1. maska
-if mode == "niebieski":
+TEXT_ONLY = mode == "tekst"   # sam napis (niebieski), bez koła
+if mode in ("niebieski", "tekst"):
     a = cv2.imread(src).astype(np.float32)
     ink = np.clip((a[:, :, 0] - a[:, :, 2]) / 133 * 255, 0, 255)
 else:
@@ -30,18 +31,21 @@ ink = cv2.copyMakeBorder(ink, PAD, PAD, PAD, PAD, cv2.BORDER_CONSTANT, value=0)
 H, W = ink.shape
 
 # ---------- koło: dopasowanie do zewnętrznych konturów dużych kształtów
-cs, _ = cv2.findContours((ink > 128).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-amax = max(cv2.contourArea(c) for c in cs)
-P = np.concatenate([c[:, 0, :] for c in cs if cv2.contourArea(c) > 0.2 * amax]).astype(np.float64)
-hull = cv2.convexHull(P.astype(np.float32))[:, 0, :]
-cx, cy = hull.mean(0); R = np.median(np.hypot(P[:, 0]-cx, P[:, 1]-cy)); thr = R * 0.2
-for it in range(30):
-    d = np.abs(np.hypot(P[:, 0]-cx, P[:, 1]-cy) - R); keep = d < thr
-    q = P[keep]; A_ = np.c_[2*q[:, 0], 2*q[:, 1], np.ones(len(q))]; b_ = (q**2).sum(1)
-    cx, cy, c = np.linalg.lstsq(A_, b_, rcond=None)[0]; R = math.sqrt(c + cx*cx + cy*cy)
-    thr = max(1.0, thr * 0.7)
-R += 0.5
-print(f"koło: środek ({cx-PAD:.2f},{cy-PAD:.2f}) r={R:.2f}")
+if TEXT_ONLY:
+    cx, cy, R = -1e5, -1e5, 1.0
+else:
+    cs, _ = cv2.findContours((ink > 128).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    amax = max(cv2.contourArea(c) for c in cs)
+    P = np.concatenate([c[:, 0, :] for c in cs if cv2.contourArea(c) > 0.2 * amax]).astype(np.float64)
+    hull = cv2.convexHull(P.astype(np.float32))[:, 0, :]
+    cx, cy = hull.mean(0); R = np.median(np.hypot(P[:, 0]-cx, P[:, 1]-cy)); thr = R * 0.2
+    for it in range(30):
+        d = np.abs(np.hypot(P[:, 0]-cx, P[:, 1]-cy) - R); keep = d < thr
+        q = P[keep]; A_ = np.c_[2*q[:, 0], 2*q[:, 1], np.ones(len(q))]; b_ = (q**2).sum(1)
+        cx, cy, c = np.linalg.lstsq(A_, b_, rcond=None)[0]; R = math.sqrt(c + cx*cx + cy*cy)
+        thr = max(1.0, thr * 0.7)
+    R += 0.5
+if not TEXT_ONLY: print(f"koło: środek ({cx-PAD:.2f},{cy-PAD:.2f}) r={R:.2f}")
 
 yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
 rr = np.hypot(xx - cx, yy - cy); Rin = R - 1.5
@@ -287,7 +291,7 @@ def italic_angle(cs):
     angs = np.array([a_ for a_, _ in sl]); ws = np.array([l_ for _, l_ in sl]); sel = np.abs(angs - np.median(angs)) < 3
     return float(np.average(angs[sel], weights=ws[sel])) if sel.sum() >= 3 else None
 contours = fit_all()
-it = italic_angle(contours)
+it = None if TEXT_ONLY else italic_angle(contours)
 if it is not None:
     AXES.append(it); contours = fit_all()
 # ---------- 4. kąty odcinków: 0/90 + kursywa
@@ -295,7 +299,7 @@ lines = [(s, math.degrees(math.atan2(s[2][1]-s[1][1], s[2][0]-s[1][0])) % 180, n
          for p in contours for s in p if s[0] == "L"]
 cands = [0.0, 90.0]
 sl = [(ang, L) for _, ang, L in lines if L > 15 and (60 < ang < 87 or 93 < ang < 120)]
-if len(sl) >= 3:
+if len(sl) >= 3 and not TEXT_ONLY:
     angs = np.array([a for a, _ in sl]); ws = np.array([l for _, l in sl]); sel = np.abs(angs - np.median(angs)) < 3
     if sel.sum() >= 3: cands.append(float(np.average(angs[sel], weights=ws[sel]))); print(f"kąt kursywy: {cands[-1]:.2f}°")
 def adiff(a, b): d = abs(a - b) % 180; return min(d, 180 - d)

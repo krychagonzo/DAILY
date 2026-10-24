@@ -7,6 +7,9 @@
 | `fundacja-ppl-biale.svg` | Fundacja PPL, białe na przezroczystym (jak oryginał PNG) |
 | `fundacja-ppl-czarne.svg` | Fundacja PPL, wersja czarna |
 | `podglad.png` | podgląd wszystkich wersji |
+| `ppl-porty-lotnicze.svg` | logo PPL Porty Lotnicze (znak + napis), #004B85 |
+| `ppl-porty-lotnicze-biale.svg` | to samo w bieli, na ciemne tło |
+| `podglad-porty-lotnicze.png` | podgląd |
 
 Źródła: `ppl-zrodlo.jpg`, `fundacja-ppl-zrodlo.png`.
 
@@ -21,3 +24,10 @@ Pliki nie są surowym obrysem pikseli. Skrypt `wektoryzuj.py` czyści geometrię
 
 Uruchomienie: `python3 wektoryzuj.py <źródło> niebieski|alfa <kolor> <wynik.svg> <tytuł>`
 Kolor #004B85 odczytano ze zdjęcia JPG, więc oficjalny kolor z księgi znaku może się minimalnie różnić.
+
+## PPL Porty Lotnicze
+- znak: ten sam wygładzony `ppl-logo.svg`, przeskalowany i ustawiony dokładnie na kole z `porty-lotnicze-zrodlo.png`
+- napis: **złożony z konturów fontu Tahoma** (wersja otwarta z projektu Wine, licencja LGPL), a nie obrysowany.
+  Skala, pozycje słów, rozstrzał i drobne korekty liter dopasowane do źródła (`napis-tahoma-dopasowanie.json`).
+  W wersji Wine litera „y” ma zakrzywiony ogonek, więc poprawiono ją na prosty, jak w oryginalnej Tahomie.
+- skrypty: `napis_z_fontu.py` (napis) → `zloz_porty_lotnicze.py` (znak + napis, jedna ścieżka)
